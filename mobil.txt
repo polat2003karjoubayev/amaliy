@@ -1,0 +1,57 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: TextFieldExample(),
+    );
+  }
+}
+
+class TextFieldExample extends StatefulWidget {
+  @override
+  _TextFieldExampleState createState() => _TextFieldExampleState();
+}
+
+class _TextFieldExampleState extends State<TextFieldExample> {
+  String _inputText =
+      ""; // Foydalanuvchi kiritgan matnni saqlash uchun o'zgaruvchi
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("TextField Example"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            TextField(
+              onChanged: (text) {
+                setState(() {
+                  _inputText = text; // Matn har safar o'zgarganda saqlanadi
+                });
+              },
+              decoration: InputDecoration(
+                labelText: "Matn kiriting",
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 20),
+            Text(
+              "Siz kiritgan matn: $_inputText", // Foydalanuvchi kiritgan matn aks ettiriladi
+              style: TextStyle(fontSize: 18),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
